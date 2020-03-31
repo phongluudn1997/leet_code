@@ -15,6 +15,11 @@ fibo = dict()
 
 
 def fibonacci_vip(n):
+    """
+    :type n: int
+    :rtype: int
+    :algorithm: top down using memoization.
+    """
     if n <= 1:
         return n
     if n in fibo:
@@ -26,6 +31,10 @@ def fibonacci_vip(n):
 
 @working_time
 def fibo_bottom_up(n):
+    """
+    :type n: int
+    bottom_up using memoization.
+    """
     if n < 2:
         return n
     fi_minus_2 = 0

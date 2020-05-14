@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 def permuatation(nums):
     res = []
 
@@ -12,7 +11,8 @@ def permuatation(nums):
 
 
 print(permuatation([1, 2, 3]))
-=======
+
+
 def all_perms(elements):
     if len(elements) <= 1:
         yield elements
@@ -25,4 +25,3 @@ def all_perms(elements):
 
 for i in all_perms([1, 2, 3, 4, 5, 6]):
     print(i)
->>>>>>> 7eac51a27f00e9ebb4979826c76995a503258203

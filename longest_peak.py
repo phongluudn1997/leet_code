@@ -37,23 +37,30 @@ def find_longest_peak(array):
 
 
 def longestPeak(array):
+    def isPeak(index):
+        if index == 0:
+            return array[1] < array[0]
+        elif index == len(array) - 1:
+            return array[-1] > array[-2]
+        return array[index] > array[index - 1] and array[index] > array[index + 1]
     # Solution of Algo but it's not worked!
     longestPeakLength = 0
-    i = 1
+    i = 0
     while i < len(array) - 1:
-        isPeak = array[i - 1] < array[i] and array[i] > array[i + 1]
-        if not isPeak:
+        if not isPeak(i):
             i += 1
             continue
-        leftIndex = i - 2
-        while leftIndex >= 0 and array[leftIndex] < array[leftIndex + 1]:
+
+        leftIndex = rightIndex = i
+
+        while leftIndex > 0 and array[leftIndex - 1] < array[leftIndex]:
             leftIndex -= 1
 
-        rightIndex = i + 2
-        while rightIndex < len(array) and array[rightIndex] < array[rightIndex - 1]:
+        while rightIndex < len(array) - 1 and array[rightIndex + 1] < array[rightIndex]:
             rightIndex += 1
 
         currentPeakLength = rightIndex - leftIndex + 1
+
         longestPeakLength = max(longestPeakLength, currentPeakLength)
         i = rightIndex
     return longestPeakLength

@@ -49,23 +49,6 @@ class BST:
                 - node has both left and right -> replace the value with the value of minimum node in the right subtree, delete the minimum node. 
             
         """
-        def getReplacement(currentNode):
-            if currentNode.left is None and currentNode.right is None:
-                return None                
-            elif currentNode.left is not None and currentNode.right is not None:
-                minNode = findMin(currentNode.right)
-                currentNode.value = minNode.value
-                currentNode.right.remove(currentNode.value)
-            elif currentNode.left is not None:
-                return currentNode.left
-            else:
-                return currentNode.right
-        
-        def findMin(currentNode):
-            while currentNode.left is not None:
-                currentNode = currentNode.left
-            return currentNode
-
         currentNode = self
         parentNode = None
         while currentNode is not None:
@@ -76,14 +59,60 @@ class BST:
                 parentNode = currentNode
                 currentNode = currentNode.right
             else:
-                if currentNode.value < parentNode.value:
-                    parentNode.left = getReplacement(currentNode)
+                if currentNode.left is None and currentNode.right is None:
+                    parentNode.replaceChild(currentNode, None)
+                    break
+                elif currentNode.left and currentNode.right:
+                    minNode = self.right.findMin()
+                    currentNode.value = minNode.value
+                    currentNode.right.removeNode(currentNode.value)
+                    break
+                elif currentNode.left:
+                    parentNode.replaceChilde(currentNode, currentNode.left)
+                    break
                 else:
-                    parentNode.right = getReplacement(currentNode)
+                    parentNode.replaceChild(currentNode, currentNode.right)
+                    break
         return self
+    
+    def __str__(self):
+        if self.left:
+            print(self.left)
+        print(self.value)
+        if self.right:
+            print(self.right)
+        return " "
+        
+    def getNodeWithValue(self, value):
+        currentNode = self
+        while currentNode is not None:
+            if value < currentNode.value:
+                currentNode = currentNode.left
+            elif value > currentNode.value:
+                currentNode = currentNode.right
+            else:
+                return currentNode
+        return None
+    
+    def findMin(self):
+        currentNode = self
+        while currentNode.left is not None:
+            currentNode = currentNode.left
+        return currentNode
 
+    def replaceChild(self, childNode, replacement):
+        """
+            @params: replacement: type BST || None
+        """
+        if not self.left and not self.right:
+            print('No child to replace.')
+        elif childNode.value < self.value:
+            self.left = replacement
+        else:
+            self.right = replacement
 if __name__ == "__main__":
     bst = BST(10)    
     bst.insert(11)
     bst.insert(12)
     bst.remove(12)
+    print(bst)

@@ -1,4 +1,4 @@
-class BST: 
+class BST:
     def __init__(self, value):
         self.value = value
         self.left = None
@@ -10,10 +10,10 @@ class BST:
         while True:
             if value < currentNode.value:
                 if currentNode.left == None:
-                    currentNode.left = BST(value) 
+                    currentNode.left = BST(value)
                     break
                 else:
-                     currentNode = currentNode.left
+                    currentNode = currentNode.left
             else:
                 if currentNode.right == None:
                     currentNode.right = BST(value)
@@ -46,8 +46,8 @@ class BST:
                 - node doesn't have left or right -> replace with None
                 - node only has left subtree -> replace with the left subtree.
                 - node only has right subtree -> replace with the right subtree.
-                - node has both left and right -> replace the value with the value of minimum node in the right subtree, delete the minimum node. 
-            
+                - node has both left and right -> replace the value with the value of minimum node in the right subtree, delete the minimum node.
+
         """
         currentNode = self
         parentNode = None
@@ -74,15 +74,14 @@ class BST:
                     parentNode.replaceChild(currentNode, currentNode.right)
                     break
         return self
-    
-    def __str__(self):
+
+    def printInOrder(self):
         if self.left:
-            print(self.left)
+            self.left.printInOrder()
         print(self.value)
         if self.right:
-            print(self.right)
-        return " "
-        
+            self.right.printInOrder()
+
     def getNodeWithValue(self, value):
         currentNode = self
         while currentNode is not None:
@@ -93,7 +92,7 @@ class BST:
             else:
                 return currentNode
         return None
-    
+
     def findMin(self):
         currentNode = self
         while currentNode.left is not None:
@@ -110,9 +109,12 @@ class BST:
             self.left = replacement
         else:
             self.right = replacement
+
+
 if __name__ == "__main__":
-    bst = BST(10)    
-    bst.insert(11)
+    bst = BST(10)
+    bst.insert(5)
     bst.insert(12)
+    bst.insert(9)
     bst.remove(12)
-    print(bst)
+    bst.printInOrder()

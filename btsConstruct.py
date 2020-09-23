@@ -110,12 +110,15 @@ class BST:
         else:
             self.right = replacement
 
+
 def isValidBST(self):
     def validBSTHelper(node, minValue, maxValue):
         if not node.left and not node.right:
             return True
+        elif node.value < minValue or node.value >= maxValue:
+            return False
         else:
-            return node.value > minValue and node.value <= maxValue and validBSTHelper(node.left, minValue, node.value) and validBSTHelper(node.right, node.value, maxValue)
+            return validBSTHelper(node.left, minValue, node.value) and validBSTHelper(node.right, node.value, maxValue)
     return validBSTHelper(self, float("-inf"), float("inf"))
 
 

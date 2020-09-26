@@ -9,13 +9,13 @@ class BST:
         currentNode = self
         while True:
             if value < currentNode.value:
-                if currentNode.left == None:
+                if currentNode.left is None:
                     currentNode.left = BST(value)
                     break
                 else:
                     currentNode = currentNode.left
             else:
-                if currentNode.right == None:
+                if currentNode.right is None:
                     currentNode.right = BST(value)
                     break
                 else:
@@ -151,11 +151,36 @@ def isValidBST(self):
     return validBSTHelper(self, float("-inf"), float("inf"))
 
 
+# O(nlog(n)) time | O(n) space
+def minHeightBST(array):
+    return constructMinHeight(array, 0, len(array) - 1)
+
+
+def constructMinHeight(array, startIdx, endIdx):
+    if endIdx < startIdx:
+        return None
+    midIdx = (endIdx - startIdx) // 2
+    midVal = array[midIdx]
+    bst = BST(midVal)
+    bst.left = constructMinHeight(array, 0, midIdx - 1)
+    bst.right = constructMinHeight(array, midIdx + 1, endIdx)
+    return bst
+
+
+def invertBst(bst):
+    queue = [bst]
+    while len(queue):
+        current = queue.pop()
+        if current is None:
+            continue
+        current.left, current.right = current.right, current.left
+        queue.append(current.left)
+        queue.append(current.right)
+
+
 if __name__ == "__main__":
     bst = BST(10)
     bst.insert(5)
     bst.insert(12)
     bst.insert(9)
-    bst.remove(12)
-    array = inOrderTraverse(bst)
-    print(array)
+    print(inOrderTraverse(bst))

@@ -30,6 +30,27 @@ class Sorting(object):
         return nums
 
     @classmethod
+    def quick_sort(cls, nums):
+        def real_quick_sort(nums, lo, hi):
+            if lo < hi:
+                p = partition(nums, lo, hi)
+                real_quick_sort(nums, lo, p - 1)
+                real_quick_sort(nums, p + 1, hi)
+
+        def partition(nums, lo, hi):
+            pivot = nums[hi]
+            i = lo
+            for j in range(lo, hi):
+                if nums[j] < pivot:
+                    nums[i], nums[j] = nums[j], nums[i]
+                    i += 1
+            nums[i], nums[hi] = nums[hi], nums[i]
+            return i
+
+        real_quick_sort(nums, 0, len(nums) - 1)
+        return nums
+
+    @classmethod
     def merged_sort(cls, nums):
         # divide
         def divide(arr):
@@ -41,4 +62,4 @@ class Sorting(object):
         return divide(nums)
 
 
-print(Sorting.insertion_sort([4, 3, 2, 1]))
+print(Sorting.quick_sort([4, 3, 2, 1]))

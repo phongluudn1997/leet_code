@@ -3,9 +3,9 @@ import time
 
 def working_time(func):
     def wrapper(*args, **kwargs):
-        t1 = time.clock()
+        t1 = time.process_time()
         res = func(*args, **kwargs)
-        working_time = time.clock() - t1
+        working_time = time.process_time() - t1
         print(f'Function: {func.__name__} takes {working_time}s.')
         return res
     return wrapper

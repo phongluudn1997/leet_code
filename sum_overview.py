@@ -101,4 +101,22 @@ def find_shortest_path_with_memo(total, numbers, memo={}):
     return shorstest_path
 
 
-print(find_shortest_path_with_memo(1341, [5, 2, 1]))
+def find_all_path(total, numbers, memo={}):
+    if total == 0:
+        return [[]]
+    if total < 0:
+        return None
+    if total in memo:
+        return memo[total]
+    paths = []
+    for number in numbers:
+        remainder = total - number
+        # [[], [], []] or None
+        path_at_number = find_all_path(remainder, numbers)
+        if path_at_number is not None:
+            paths = paths + [[number] + p for p in path_at_number]
+    memo[total] = paths
+    return paths
+
+
+print(find_all_path(50, [1, 2, 5]))

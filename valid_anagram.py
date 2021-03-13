@@ -19,8 +19,18 @@ def is_anagram(s, t):
     return True
 
 
+def is_anagram_1(s, t):
+    dict1 = {}
+    dict2 = {}
+    for word in s:
+        dict1[word] = dict1.get(word, 0) + 1
+    for word in t:
+        dict2[word] = dict2.get(word, 0) + 1
+    return dict1 == dict2
+
+
 def is_anagram_2(s, t):
     return sorted(s) == sorted(t)
 
 
-print(is_anagram_2('hello', 'lloeh'))
+print(is_anagram_1('hello', 'lloeh'))

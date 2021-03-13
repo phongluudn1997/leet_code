@@ -1,20 +1,14 @@
 class Solution:
-    def reverse_string(self, s):
-        left, right = 0, len(s) - 1
-        while left < right:
-            s[left], s[right] = s[right], s[left]
-            left += 1
-            right -= 1
-        return s
-
-    def reverse_string_1(self, s):
-        for index, value in enumerate(s):
-            if index < len(s) / 2:
-                s[index], s[len(s) - 1 - index] = s[len(s) -
-                                                    1 - index], s[index]
-        return s
+    def reverseString(self, s):
+        """
+        Do not return anything, modify s in-place instead.
+        """
+        l = len(s)
+        if l < 2:
+            return s
+        return self.reverseString(s[l//2:]) + self.reverseString(s[:l//2])
 
 
 solution = Solution()
-result = solution.reverse_string_1(['a', 'b', 'c', 'd', 'e'])
+result = solution.reverseString(["h", "e", "l", "l", "o"])
 print(result)

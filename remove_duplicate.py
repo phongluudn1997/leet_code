@@ -13,7 +13,7 @@ class Solution:
 
     def approach_2(self, nums):
         """
-        :type nums: List(int) -> sourted
+        :type nums: List(int) -> sorted
         :rtype: int
         """
         i = 0

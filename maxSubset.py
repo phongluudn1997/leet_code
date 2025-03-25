@@ -3,7 +3,7 @@
     và các element không được gần nhau.
 
     Giải:
-    Theo phương dinamic programming, chia bài toán thành nhiều bài toán nhỏ hơn.
+    Theo phương dynamic programming, chia bài toán thành nhiều bài toán nhỏ hơn.
     Công thức tìm maxSum ở phần tử thứ i:
         maxSum[i] = {
                         maxSum[i - 1]

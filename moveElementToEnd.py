@@ -1,5 +1,5 @@
 """
-Đề bài: Cho một array, một number, sắp xếp array để đẩy number ve phia cuoi array.
+Đề bài: Cho một array, một number, sắp xếp array để đẩy number về phía cuối array.
 input: [2,1,2,2,2,3,4,2] vs 2 
 output: [1,3,4,2,2,2,2,2]
 """
